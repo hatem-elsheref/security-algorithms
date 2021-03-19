@@ -11,7 +11,7 @@ class Caesar
     private int $key;
     private bool $supportSpace = false;
     private bool $supportCapital = false;
-    public array $domain = [];
+    private array $domain = [];
 
     /**
      * Caesar constructor.

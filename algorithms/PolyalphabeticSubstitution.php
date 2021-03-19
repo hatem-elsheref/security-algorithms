@@ -13,7 +13,7 @@ class PolyalphabeticSubstitution
     private string $keyword;
     private bool $supportSpace = false;
     private bool $supportCapital = false;
-    public array $domain = [];
+    private array $domain = [];
 
 
     /**
