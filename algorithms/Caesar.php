@@ -93,7 +93,7 @@ class Caesar
         foreach (str_split($cipher) as $index => $char){
             $plain = ($this->domain[$char] - $this->key) % count($this->domain);
             if ($plain < 0 )
-                $plain = $plain + count($this->domain);
+                $plain = $plain + (ceil($plain / count($this->domain))) * count($this->domain);
 
             $plain = array_flip($this->domain)[$plain];
             array_push($result,$plain);

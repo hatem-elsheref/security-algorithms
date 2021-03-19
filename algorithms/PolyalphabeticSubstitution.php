@@ -6,23 +6,25 @@ namespace Elsheref\Security\Algorithms;
 
 class PolyalphabeticSubstitution
 {
+
     const SMALL = 'small_only';
     const CAPITAL = 'with_capital';
 
-    private int $key;
+    private string $keyword;
     private bool $supportSpace = false;
     private bool $supportCapital = false;
     public array $domain = [];
 
+
     /**
-     * Caesar constructor.
-     * @param int $key
+     * PolyalphabeticSubstitution constructor.
+     * @param string $keyword
      * @param bool $capital
      * @param bool $space
      */
-    public function __construct(int $key , bool $capital = false , bool $space = false)
+    public function __construct(string $keyword , bool $capital = false , bool $space = false)
     {
-        $this->key = $key;
+        $this->keyword = $keyword;
         $this->supportSpace = $space;
         $this->supportCapital = $capital;
         $this->generateDomain($capital ? self::CAPITAL : self::SMALL , $space);
@@ -64,17 +66,38 @@ class PolyalphabeticSubstitution
         return $text;
     }
 
+    private function prepareKeyWord(int $length){
+        if (empty($this->keyword))
+            throw new \Exception('please enter valid keyword');
+
+        if (!$this->supportSpace){
+            $this->keyword = implode('',explode(' ',$this->keyword));
+        }
+        if (!$this->supportCapital)
+            $this->keyword = strtolower($this->keyword);
+
+        if (strlen($this->keyword) < $length){
+            while (strlen($this->keyword) < $length)
+            $this->keyword = $this->keyword . substr($this->keyword , 0 , $length - strlen($this->keyword));
+        }elseif (strlen($this->keyword) > $length){
+            $this->keyword = substr($this->keyword , 0 , $length);
+        }
+    }
+
     public function encrypt(string $plain){
         $result = [];
+
         try {
             $plain = $this->prepareText($plain);
+            $this->prepareKeyWord(strlen($plain));
         }catch (\Exception $e) {
             echo $e->getMessage();
             exit(0);
         }
 
+
         foreach (str_split($plain) as $index => $char){
-            $cipher = ($this->domain[$char] + $this->key) % count($this->domain);
+            $cipher = ($this->domain[$char] + $this->domain[$this->keyword[$index]]) % count($this->domain);
             $cipher = array_flip($this->domain)[$cipher];
             array_push($result,$cipher);
         }
@@ -82,19 +105,20 @@ class PolyalphabeticSubstitution
     }
 
     public function decrypt(string $cipher){
-
         $result = [];
 
         try {
             $cipher = $this->prepareText($cipher);
+            $this->prepareKeyWord(strlen($cipher));
         }catch (\Exception $e) {
             echo $e->getMessage();
             exit(0);
         }
+
         foreach (str_split($cipher) as $index => $char){
-            $plain = ($this->domain[$char] - $this->key) % count($this->domain);
+            $plain = ($this->domain[$char] - $this->domain[$this->keyword[$index]]) % count($this->domain);
             if ($plain < 0 )
-                $plain = $plain + count($this->domain);
+                $plain = $plain + (ceil(abs($plain / count($this->domain)))) * count($this->domain);
 
             $plain = array_flip($this->domain)[$plain];
             array_push($result,$plain);
