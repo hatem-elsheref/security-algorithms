@@ -14,5 +14,8 @@
         "psr-4": {
             "Elsheref\\Security\\Algorithms\\" : "algorithms/"
         }
-    }
+    },
+  "require": {
+    "ext-gmp": "*"
+  }
 }

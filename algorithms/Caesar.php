@@ -63,7 +63,11 @@ class Caesar
         return $text;
     }
 
-    public function encrypt(string $plain){
+    public function encrypt(string $plain , string $keyword = ''){
+
+        if (!empty($keyword))
+            $this->keyword = $keyword;
+
         $result = [];
         try {
             $plain = $this->prepareText($plain);
@@ -80,7 +84,10 @@ class Caesar
         return implode('',$result);
     }
 
-    public function decrypt(string $cipher){
+    public function decrypt(string $cipher , string $keyword = ''){
+
+        if (!empty($keyword))
+            $this->keyword = $keyword;
 
         $result = [];
 

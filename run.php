@@ -15,6 +15,7 @@
  * */
 
 
+
 // require the composer autoloader file to resolve the namespaces of classes
 require_once __DIR__ . DIRECTORY_SEPARATOR . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
 
@@ -34,3 +35,23 @@ require_once __DIR__ . DIRECTORY_SEPARATOR . 'vendor' . DIRECTORY_SEPARATOR . 'a
 //$fullVigirine = new \Elsheref\Security\Algorithms\FullViginer('df');
 //echo $fullVigirine->encrypt('beda');
 //echo $fullVigirine->decrypt('EJGF');
+
+################ try one time pad algorithm ######
+
+
+$oneTimePad = new \Elsheref\Security\Algorithms\OneTimePad('0l;@');
+$encryptedMessage = $oneTimePad->encrypt('Hi!');
+//echo $encryptedMessage . PHP_EOL;
+
+echo implode('',array_map(function ($item){
+    return chr($item);
+},explode(' ' , $encryptedMessage))) . PHP_EOL;
+
+$decryptedMessage = $oneTimePad->decrypt(implode('',array_map(function ($item){
+        return chr($item);
+},explode(' ' , $encryptedMessage)))) . PHP_EOL;
+
+
+echo implode('',array_map(function ($item){
+        return chr($item);
+},explode(' ' , $decryptedMessage))) . PHP_EOL;
