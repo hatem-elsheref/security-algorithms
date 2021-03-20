@@ -5,12 +5,12 @@
  * polyalphapet (done)
  * vegerin (done)
  * one time pad (done)
- * play fair
- * affine
- * rsa
- * diff helman
- * hill cipher
- * transposition
+ * transposition (done)
+ * play fair (done)
+ * affine التلات
+ * rsa الاتنين
+ * diff helman الاتنين
+ * hill cipher الاحد
  * compination between transposition and susbstitution
  * */
 
@@ -58,6 +58,13 @@ require_once __DIR__ . DIRECTORY_SEPARATOR . 'vendor' . DIRECTORY_SEPARATOR . 'a
 
 ################ try transposition algorithm ######
 
-$transposition = new \Elsheref\Security\Algorithms\Transposition('securit');
-echo $transposition->encrypt('we need more snow now') . PHP_EOL;
-echo $transposition->decrypt('NEWERODOCENBWONMWDESA') . PHP_EOL;
+//$transposition = new \Elsheref\Security\Algorithms\Transposition('securit');
+//echo $transposition->encrypt('we need more snow now') . PHP_EOL;
+//echo $transposition->decrypt('NEWERODOCENBWONMWDESA') . PHP_EOL;
+
+################ try play fair algorithm ######
+//$playFair = new \Elsheref\Security\Algorithms\PlayFair('MONARCHY');
+//$text = 'BALLOON';
+//echo 'PLAY FAIR '.PHP_EOL;
+//echo 'ENCRYPT OF BALLOON = '.$playFair->encrypt($text) . PHP_EOL;
+//echo 'DECTYPT OF IBSUPMNA = '.$playFair->decrypt('IBSUPMNA') . PHP_EOL;
