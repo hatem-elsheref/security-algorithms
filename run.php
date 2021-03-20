@@ -39,19 +39,25 @@ require_once __DIR__ . DIRECTORY_SEPARATOR . 'vendor' . DIRECTORY_SEPARATOR . 'a
 ################ try one time pad algorithm ######
 
 
-$oneTimePad = new \Elsheref\Security\Algorithms\OneTimePad('0l;@');
-$encryptedMessage = $oneTimePad->encrypt('Hi!');
-//echo $encryptedMessage . PHP_EOL;
+//$oneTimePad = new \Elsheref\Security\Algorithms\OneTimePad('0l;@');
+//$encryptedMessage = $oneTimePad->encrypt('Hi!');
+////echo $encryptedMessage . PHP_EOL;
+//
+//echo implode('',array_map(function ($item){
+//    return chr($item);
+//},explode(' ' , $encryptedMessage))) . PHP_EOL;
+//
+//$decryptedMessage = $oneTimePad->decrypt(implode('',array_map(function ($item){
+//        return chr($item);
+//},explode(' ' , $encryptedMessage)))) . PHP_EOL;
+//
+//
+//echo implode('',array_map(function ($item){
+//        return chr($item);
+//},explode(' ' , $decryptedMessage))) . PHP_EOL;
 
-echo implode('',array_map(function ($item){
-    return chr($item);
-},explode(' ' , $encryptedMessage))) . PHP_EOL;
+################ try transposition algorithm ######
 
-$decryptedMessage = $oneTimePad->decrypt(implode('',array_map(function ($item){
-        return chr($item);
-},explode(' ' , $encryptedMessage)))) . PHP_EOL;
-
-
-echo implode('',array_map(function ($item){
-        return chr($item);
-},explode(' ' , $decryptedMessage))) . PHP_EOL;
+$transposition = new \Elsheref\Security\Algorithms\Transposition('securit');
+echo $transposition->encrypt('we need more snow now') . PHP_EOL;
+echo $transposition->decrypt('NEWERODOCENBWONMWDESA') . PHP_EOL;
