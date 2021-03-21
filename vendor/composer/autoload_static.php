@@ -6,6 +6,10 @@ namespace Composer\Autoload;
 
 class ComposerStaticInit5391bc3cbf696afa1f0bac6c9b584a9f
 {
+    public static $files = array (
+        '8dbcdb535272e38fcca83b3fac9b1cd5' => __DIR__ . '/../..' . '/algorithms/ExtendedGcd.php',
+    );
+
     public static $prefixLengthsPsr4 = array (
         'E' => 
         array (

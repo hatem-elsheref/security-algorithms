@@ -7,11 +7,11 @@
  * one time pad (done)
  * transposition (done)
  * play fair (done)
- * affine التلات
- * rsa الاتنين
- * diff helman الاتنين
- * hill cipher الاحد
- * compination between transposition and susbstitution
+ * combination between transposition and substitution (done)
+ * rsa (done)
+ * diff helman (not required)
+ * affine (not required)
+ * hill cipher (not required)
  * */
 
 
@@ -70,6 +70,33 @@ require_once __DIR__ . DIRECTORY_SEPARATOR . 'vendor' . DIRECTORY_SEPARATOR . 'a
 //echo 'DECTYPT OF IBSUPMNA = '.$playFair->decrypt('IBSUPMNA') . PHP_EOL;
 
 ################ try combination between substitution and transposition algorithm ######
-$combination = new \Elsheref\Security\Algorithms\CBSAT();
+//$combination = new \Elsheref\Security\Algorithms\CBSAT();
 //echo $combination->encrypt('take me to your leader');
-echo $combination->decrypt('RYEANCCVKOAUPXKYXW');
+//echo $combination->decrypt('RYEANCCVKOAUPXKYXW');
+
+################ try RSA algorithm #############
+
+$client = new \Elsheref\Security\Algorithms\RSA(11,17,23 , null , false );
+$server = new \Elsheref\Security\Algorithms\RSA(5 , 11 , 9 , null , false);
+
+$client->handShake($server);
+$server->handShake($client);
+
+echo  $server->encrypt(26) . PHP_EOL;
+echo  $client->decrypt(26).PHP_EOL;
+
+
+//echo $client->encrypt(89).PHP_EOL;
+//echo $server->decrypt(34);
+
+//var_dump($client->getPublicKey());
+//var_dump($server->getPublicKey());
+//var_dump($client->receiverPublicKey);
+
+
+
+//$encryptedMessage = $client->encrypt(2);
+//echo $encryptedMessage .PHP_EOL;
+//  send decrypted message to server
+//$decryptedMessage = $server->decrypt($encryptedMessage);
+//echo $decryptedMessage.PHP_EOL;

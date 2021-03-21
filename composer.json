@@ -13,7 +13,8 @@
     "autoload": {
         "psr-4": {
             "Elsheref\\Security\\Algorithms\\" : "algorithms/"
-        }
+        },
+        "files": ["algorithms/ExtendedGcd.php"]
     },
   "require": {
     "ext-gmp": "*"
