@@ -68,3 +68,8 @@ require_once __DIR__ . DIRECTORY_SEPARATOR . 'vendor' . DIRECTORY_SEPARATOR . 'a
 //echo 'PLAY FAIR '.PHP_EOL;
 //echo 'ENCRYPT OF BALLOON = '.$playFair->encrypt($text) . PHP_EOL;
 //echo 'DECTYPT OF IBSUPMNA = '.$playFair->decrypt('IBSUPMNA') . PHP_EOL;
+
+################ try combination between substitution and transposition algorithm ######
+$combination = new \Elsheref\Security\Algorithms\CBSAT();
+//echo $combination->encrypt('take me to your leader');
+echo $combination->decrypt('RYEANCCVKOAUPXKYXW');
